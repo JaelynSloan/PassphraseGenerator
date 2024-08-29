@@ -1,0 +1,40 @@
+﻿@page
+@model Password_Generator.Components.IndexModel
+@{
+    ViewData["Title"] = "Password Generator";
+}
+
+<script src="https://kit.fontawesome.com/3e4d0c6727.js" crossorigin="anonymous"></script>
+
+<div class="text-center">
+    <div class="text-box">
+        <h4 class="outline-box" id="password-box"> @Model.Password </h4><i class="fa-solid fa-copy" onclick="copyPassword()"></i>
+    </div>
+    <div class="generate-btn">
+        <form method="post">
+            <button type="submit" asp-page-handler="GeneratePassword">Generate</button>
+        </form>
+    </div>
+</div>
+
+<div class="form-options">
+    <div class="check-boxes">
+        <p id="text"><input type="checkbox" id="myCheck" checked="checked">Contains uppercase</p>
+        <p id="text"><input type="checkbox" id="myCheck" checked="checked">Contains numbers</p>
+        <p id="text"><input type="checkbox" id="myCheck" checked="checked">Contains letters</p>
+        <p id="text"><input type="checkbox" id="myCheck" checked="checked">Contains special characters</p>
+        <p id="text"><input type="number" id="myNum" value="16" />Character amount</p>
+    </div>
+</div>
+
+
+<script>
+    function copyPassword() {
+        var passwordText = document.getElementById("password-box").innerText;
+        navigator.clipboard.writeText(passwordText).then(function () {
+            alert("Password copied to clipboard!");
+        }, function (err) {
+            console.error("Could not copy text: ", err);
+        });
+    }
+</script>
